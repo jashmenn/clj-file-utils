@@ -1,0 +1,55 @@
+# clj-file-utils
+
+Unix-like filesystem manipulation utilities for Clojure, wrapping Apache Commons IO.
+
+## Implemented Functions
+
+    file
+    size
+    mv
+    cp
+    cp-r
+    rm
+    rm-f
+    rm-r
+    rm-rf
+    touch
+    mkdir-p
+    chmod
+
+## As A Dependency
+
+leiningen
+
+    [clj-file-utils "0.1.1"]
+
+maven
+
+    <dependency>
+      <groupId>clj-file-utils</groupId>
+      <artifactId>clj-file-utils</artifactId>
+      <version>0.1.1</version>
+    </dependency>
+
+## Usage
+
+    user=> (use 'clj-file-utils.core)  
+    nil
+    user=> (exist "foo.txt")
+    false
+    user=> (touch "foo.txt")
+    nil
+    user=> (exist "foo.txt")
+    true
+    user=> (rm "foo.txt")
+    nil
+    user=> (file "foo.txt")
+    #<File foo.txt>
+    user=> (.getParent (file "/path/to/foo.txt"))                         
+    "/path/to"
+    
+## Authors
+
+Extracted from http://github.com/mmcgrana/clj-garden
+by Mark McGranaghan <mmcgrana@gmail.com>
+Updates by Nate Murray <nate@natemurray.com>
