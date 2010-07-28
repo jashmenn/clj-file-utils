@@ -21,9 +21,11 @@
 
 (defmacro defn-file-2 [name docstring args & body]
   `(do
-    (defmulti ~name ~docstring class)
+    (defmulti ~name ~docstring (fn [a# b#] [(class a#) (class b#)]))
     (defmethod ~name [File File] ~args ~@body)
-    (defmethod ~name [String String] ~args (~name (file ~@args)))))
+    (defmethod ~name [String String] ~args (~name 
+                                             (file (first ~args))
+                                             (file (last ~args))))))
 
 (defn-file exist 
   "Returns true if the file exists" 
@@ -35,19 +37,19 @@
   [file]
   (.length file))
 
-(defn mv
+(defn-file-2 mv
   "Move a file from one location to another, preserving the file data."
-  [#^File from-file #^File to-file]
+  [from-file to-file]
   (FileUtils/moveFile from-file to-file))
 
-(defn cp
+(defn-file-2 cp
   "Copy a file from one location to another, preserving the file date."
-  [#^File from-file #^File to-file]
+  [from-file to-file]
   (FileUtils/copyFile from-file to-file))
 
-(defn cp-r
+(defn-file-2 cp-r
   "Copy a directory from one location to another, preseing the file data."
-  [#^File from-dir #^File to-dir]
+  [from-dir to-dir]
   (FileUtils/copyDirectory from-dir to-dir))
 
 (defn-file rm
@@ -86,6 +88,7 @@
   (when-not (.exists file)
     (FileUtils/forceMkdir file)))
 
+;; TODO turn this into a multimethod as well
 (defn chmod
   "'chmod' a file to a mode given as a 4-character string. Only works on
   system with a chmod command."
