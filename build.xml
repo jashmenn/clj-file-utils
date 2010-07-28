@@ -1,17 +1,74 @@
-<project name="clj-routing" default="jar">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" name="clj-file-utils" default="jar">
+   <modelVersion>4.0.0</modelVersion>
+         
   <description>Pack all sources into a JAR.</description>
 
   <property name="jarfile" location="clj-file-utils.jar"/>
 
-  <target name="clean"
-          description="Remove generated files and directories.">
+  <target name="clean" description="Remove generated files and directories.">
     <delete file="${jarfile}"/>
   </target>
 
-  <target name="jar"
-          description="Create jar file.">
+  <target name="jar" description="Create jar file.">
     <jar jarfile="${jarfile}">
       <fileset dir="./src" includes="clj_file_utils/**/*.clj"/>
     </jar>
   </target>
+
+  <repositories>
+
+   <repository>
+      <id>clojure</id>
+      <url>http://build.clojure.org/releases</url>
+    </repository>
+
+    <repository>
+      <id>clojars</id>
+      <url>http://clojars.org/repo/</url>
+    </repository>
+
+    <repository>
+      <id>central</id>
+      <url>http://repo1.maven.org/maven2</url>
+    </repository>
+
+  </repositories>
+
+  <dependencies>
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>1.3.2</version>
+    </dependency>
+
+   <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>clojure</artifactId>
+      <version>1.1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>clojure-contrib</artifactId>
+      <version>1.1.0</version>
+    </dependency>
+
+      <dependency>
+        <groupId>swank-clojure</groupId>
+        <artifactId>swank-clojure</artifactId>
+        <version>1.2.1</version>
+      </dependency>
+
+
+  </dependencies>
+
+  <plugins>
+    <plugin>
+      <groupId>com.theoryinpractise</groupId>
+      <artifactId>clojure-maven-plugin</artifactId>
+      <version>1.3.1</version>
+    </plugin>
+  </plugins>
+
 </project>

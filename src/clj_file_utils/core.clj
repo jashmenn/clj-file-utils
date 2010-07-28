@@ -1,7 +1,8 @@
 (ns clj-file-utils.core
   (:import (java.io File IOException)
            org.apache.commons.io.FileUtils)
-  (:use clojure.contrib.shell-out))
+  (:use clojure.contrib.shell-out)
+  (:gen-class))
 
 (defn file
   "Returns an instance of java.io.File based on the given file name (or 
