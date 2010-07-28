@@ -8,7 +8,7 @@
   <scm>
     <connection>scm:git:git://github.com/jashmenn/clj-file-utils.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/jashmenn/clj-file-utils.git</developerConnection>
-    <tag>3bea07f3cc5c8ada83576599bdd879417c449950</tag>
+    <tag>94b77ee8785c24147c45865462eab9db9648583b</tag>
     <url>http://github.com/jashmenn/clj-file-utils</url>
   </scm>
   <build>
