@@ -1,3 +1,4 @@
+
 (ns clj-file-utils.core
   (:import (java.io File IOException)
            org.apache.commons.io.FileUtils)
@@ -12,14 +13,26 @@
   ([parent name] (File. parent name))
   ([p q & names] (reduce file (file p q) names)))
 
-(defn exist
-  "Returns true if the file exists"
-  [#^File file]
+(defmacro defn-file [name docstring args & body]
+  `(do
+    (defmulti ~name ~docstring class)
+    (defmethod ~name File ~args ~@body)
+    (defmethod ~name String ~args (~name (file ~@args)))))
+
+(defmacro defn-file-2 [name docstring args & body]
+  `(do
+    (defmulti ~name ~docstring class)
+    (defmethod ~name [File File] ~args ~@body)
+    (defmethod ~name [String String] ~args (~name (file ~@args)))))
+
+(defn-file exist 
+  "Returns true if the file exists" 
+  [file] 
   (.exists file))
 
-(defn size
+(defn-file size
   "Returns the size in bytes of a file."
-  [#^File file]
+  [file]
   (.length file))
 
 (defn mv
@@ -37,39 +50,39 @@
   [#^File from-dir #^File to-dir]
   (FileUtils/copyDirectory from-dir to-dir))
 
-(defn rm
+(defn-file rm
   "Remove a file. Will throw an exception if the file cannot be deleted."
-  [#^File file]
+  [file]
   (if-not (.delete file)
     (throw (IOException.))))
 
-(defn rm-f
+(defn-file rm-f
   "Remove a file, ignoring any errors."
-  [#^File file]
+  [file]
   (FileUtils/forceDelete file))
 
-(defn rm-r
+(defn-file rm-r
   "REmove a directory. The directory must be empty; will throw an exception
   if it is not or if the file cannot be deleted."
-  [#^File dir]
+  [dir]
   (if-not (.delete dir)
     (throw (IOException.))))
 
-(defn rm-rf
+(defn-file rm-rf
   "Remove a directory, ignoring any errors."
-  [#^File dir]
+  [dir]
   (FileUtils/forceDelete dir))
 
-(defn touch
+(defn-file touch
   "'touch' as file, as with the Unix command."
-  [#^File file]
+  [file]
   (FileUtils/touch file))
 
-(defn mkdir-p
+(defn-file mkdir-p
   "Create the directory, including any required but nonexist parents.
   The method does not throw an exception if the complete directory tree
   already exists."
-  [#^File file]
+  [file]
   (when-not (.exists file)
     (FileUtils/forceMkdir file)))
 
