@@ -21,3 +21,4 @@ h1. Authors
 
 Extracted from http://github.com/mmcgrana/clj-garden
 by Mark McGranaghan <mmcgrana@g***l.com>
+Updates by Nate Murray <nate@natemurray.com>

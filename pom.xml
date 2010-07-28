@@ -3,12 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>clj-file-utils</groupId>
   <artifactId>clj-file-utils</artifactId>
-  <version>0.1</version>
+  <version>0.1.1</version>
   <name>clj-file-utils</name>
   <scm>
     <connection>scm:git:git://github.com/jashmenn/clj-file-utils.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/jashmenn/clj-file-utils.git</developerConnection>
-    <tag>94b77ee8785c24147c45865462eab9db9648583b</tag>
+    <tag>146041a44203f978a375394987687d859b015a9d</tag>
     <url>http://github.com/jashmenn/clj-file-utils</url>
   </scm>
   <build>
