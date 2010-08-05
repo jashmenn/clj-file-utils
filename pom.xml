@@ -3,12 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>clj-file-utils</groupId>
   <artifactId>clj-file-utils</artifactId>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
   <name>clj-file-utils</name>
   <scm>
     <connection>scm:git:git://github.com/jashmenn/clj-file-utils.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/jashmenn/clj-file-utils.git</developerConnection>
-    <tag>146041a44203f978a375394987687d859b015a9d</tag>
+    <tag>1cf46748a4cace4096468a009db45d388e7968df</tag>
     <url>http://github.com/jashmenn/clj-file-utils</url>
   </scm>
   <build>
@@ -38,16 +38,6 @@
     </repository>
   </repositories>
   <dependencies>
-    <dependency>
-      <groupId>org.clojure</groupId>
-      <artifactId>clojure</artifactId>
-      <version>1.1.0-master-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.clojure</groupId>
-      <artifactId>clojure-contrib</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
