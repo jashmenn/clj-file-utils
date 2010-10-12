@@ -27,8 +27,14 @@
                                              (file (first ~args))
                                              (file (last ~args))))))
 
+
+(defn-file exists?
+  "returns true if the file exists" 
+  [file] 
+  (.exists file))
+
 (defn-file exist 
-  "Returns true if the file exists" 
+  "DEPRICATED: Returns true if the file exists" 
   [file] 
   (.exists file))
 
@@ -94,3 +100,10 @@
   system with a chmod command."
   [#^File file #^String mode]
   (sh "chmod" mode (.getAbsolutePath file)))
+
+;;(defn ls [dir]
+;;  (seq (. (new java.io.File dir) (listFiles))))
+
+
+(defn cwd [] (System/getProperty "user.dir"))
+

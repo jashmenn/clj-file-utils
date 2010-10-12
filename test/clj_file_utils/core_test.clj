@@ -13,13 +13,13 @@
   (assert= foo (file "test" "clj_file_utils" "assets" "foo.txt")))
 
 (deftest "mv-exists"
-  (assert-not (exist fake-foo-name))
-  (assert-not (exist (file fake-foo-name)))
+  (assert-not (exists? fake-foo-name))
+  (assert-not (exists? (file fake-foo-name)))
   (do (mv foo-name fake-foo-name) true)
-  (assert (exist fake-foo-name))
-  (assert-not (exist (file foo-name)))
+  (assert (exists? fake-foo-name))
+  (assert-not (exists? (file foo-name)))
   (do (mv fake-foo-name foo-name) true)
-  (assert (exist foo-name))
+  (assert (exists? foo-name))
   )
 
 (run-tests 'clj-file-utils.core-test)
