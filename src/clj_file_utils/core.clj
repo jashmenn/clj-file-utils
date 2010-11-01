@@ -23,7 +23,7 @@
 (defn-file exists?
   "Returns true if path exists; false otherwise."
   [path]
-  (.exists file))
+  (.exists path))
 
 (defn-file size
   "Returns the size in bytes of a file."
