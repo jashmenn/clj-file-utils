@@ -1,4 +1,3 @@
-
 (ns clj-file-utils.core
   (:import (java.io File IOException)
            org.apache.commons.io.FileUtils)
