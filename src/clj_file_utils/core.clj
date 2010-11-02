@@ -26,6 +26,24 @@
   [path]
   (.exists path))
 
+(defn touch
+  "Create a file or update the last modified time."
+  [path]
+  (let [file (io/file path)]
+    (do
+      (.createNewFile path)
+      (.setLastModified path (System/currentTimeMillis)))))
+
+(defn mkdir
+  "Create a directory."
+  [dir]
+  (.mkdir (io/file dir)))
+
+(defn mkdir-p
+  "Create a directory and all parent directories if they do not exist."
+  [dir]
+  (.mkdirs (io/file dir)))
+
 (defn canonical-path
   "Returns the canonical path of the file or directory."
   [path]
@@ -70,7 +88,7 @@
 ;  "Copy a directory, preserving last modified times by default."
 ;  [from to & {:keys [preserve] :or {preserve true}}]
 ;  (do
-;    (println "Hello!")))
+;    (
 
 (defn mv
   "Try to rename a file, or copy and delete if on another filesystem."
@@ -81,24 +99,6 @@
       (do
         (cp from-file to-file)
         (rm from-file)))))
-
-(defn touch
-  "Create a file or update the last modified time."
-  [path]
-  (let [file (io/file path)]
-    (do
-      (.createNewFile path)
-      (.setLastModified path (System/currentTimeMillis)))))
-
-(defn mkdir
-  "Create a directory."
-  [dir]
-  (.mkdir (io/file dir)))
-
-(defn mkdir-p
-  "Create a directory and all parent directories if they do not exist."
-  [dir]
-  (.mkdirs (io/file dir)))
 
 ;(defn chmod
 ;  [path]
