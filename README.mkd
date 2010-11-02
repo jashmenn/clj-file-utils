@@ -44,7 +44,6 @@ Does not include the `file` function that is available from clojure.contrib.io.
 
 ## Authors
 
-Extracted from http://github.com/mmcgrana/clj-garden
-  - by Mark McGranaghan <mmcgrana@gmail.com>
-  - Updates by Nate Murray <nate@natemurray.com>
-  - Updates by Min Huang <min.huang@alumni.usc.edu>
+Extracted from http://github.com/mmcgrana/clj-garden by Mark McGranaghan <mmcgrana@gmail.com>
+
+Updates by Nate Murray <nate@natemurray.com>, Min Huang <min.huang@alumni.usc.edu>
