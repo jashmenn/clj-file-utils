@@ -116,6 +116,3 @@
       (do
         (cp from-file to-file)
         (rm from-file)))))
-
-;(defn chmod
-;  [path]
