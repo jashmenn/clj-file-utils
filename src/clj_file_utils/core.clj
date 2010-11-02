@@ -29,7 +29,7 @@
 (defn ls
   "List files in a directory."
   [dir]
-  (seq (.listFiles dir)))
+  (seq (.listFiles (io/file dir))))
 
 (defn touch
   "Create a file or update the last modified time."
