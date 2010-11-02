@@ -5,6 +5,8 @@ on Apache Commons IO.
 
 Does not include the `file` function that is available from clojure.contrib.io.
 
+Includes a `pchmod` function which changes file permissions in a portable way.
+
 ## Implemented Functions
 
     exists?
@@ -21,6 +23,7 @@ Does not include the `file` function that is available from clojure.contrib.io.
     rm-rf
     touch
     mkdir-p
+    chmod
 
 ## Usage
 
