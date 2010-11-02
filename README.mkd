@@ -3,11 +3,6 @@
 Unix-like filesystem manipulation utilities for Clojure, without a dependency
 on Apache Commons IO.
 
-Does not include the `chmod` function from previous versions because there is no
-pure Java way to do it, though Java 6 SE is getting closer:
-
-http://java.sun.com/developer/technicalArticles/J2SE/Desktop/javase6/enhancements/
-
 Does not include the `file` function that is available from clojure.contrib.io.
 
 ## Implemented Functions

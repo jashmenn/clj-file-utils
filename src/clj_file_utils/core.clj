@@ -1,6 +1,7 @@
 (ns clj-file-utils.core
   (:require [clojure.contrib.duck-streams :as streams])
   (:require [clojure.contrib.io :as io])
+  (:use [clojure.contrib.shell-out :only (sh)])
   (:import [java.io File])
   (:gen-class))
 
@@ -121,3 +122,9 @@
       (do
         (cp from-file to-file)
         (rm from-file)))))
+
+(defn chmod
+  "Changes file permissions (UNIX only); for portability, consider using:
+    http://java.sun.com/developer/technicalArticles/J2SE/Desktop/javase6/enhancements/"
+  [args path]
+  (sh "chmod" args (.getAbsolutePath (io/file path))))
