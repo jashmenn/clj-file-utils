@@ -26,6 +26,11 @@
   [path]
   (.exists path))
 
+(defn canonical-path
+  "Returns the canonical path of the file or directory."
+  [path]
+  (.getCanonicalPath (io/file path)))
+
 (defn size
   "Returns the size in bytes of a file."
   [file]
