@@ -6,12 +6,13 @@
 
 (def test-file (io/file "test" "clj_file_utils" "core_test.txt"))
 
+(def tmp-dir (io/file "tmp"))
+
 (defn tmp-dir-fixture [f]
-  (let [tmp-dir (io/file "tmp")]
-    (do
-      (io/delete-file-recursively tmp-dir true)
-      (.mkdirs tmp-dir)
-      (f))))
+  (do
+    (io/delete-file-recursively tmp-dir true)
+    (.mkdirs tmp-dir)
+    (f)))
 
 (deftest test-core
   (is (directory? "src"))
@@ -25,5 +26,14 @@
 (deftest test-size
   (is (= 11 (size test-file)))
   (is (= 11 (size (canonical-path test-file)))))
+
+(deftest test-cp
+  (let [to-file (io/file tmp-dir "test-mv")]
+    (do
+      (cp test-file to-file)
+      (is (exists? to-file))
+      (is (file? to-file))
+      (is (= (.lastModified test-file)
+             (.lastModified to-file))))))
 
 (use-fixtures :each tmp-dir-fixture)
