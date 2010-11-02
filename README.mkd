@@ -1,11 +1,22 @@
 # clj-file-utils
 
-Unix-like filesystem manipulation utilities for Clojure, wrapping Apache Commons IO.
+Unix-like filesystem manipulation utilities for Clojure, without a dependency
+on Apache Commons IO.
+
+Does not include the `chmod` function from previous versions because there is no
+pure Java way to do it, though Java 6 SE is getting closer:
+
+http://java.sun.com/developer/technicalArticles/J2SE/Desktop/javase6/enhancements/
+
+Does not include the `file` function that is available from clojure.contrib.io.
 
 ## Implemented Functions
 
-    file
+    exists?
+    directory?
+    file?
     size
+    ls
     mv
     cp
     cp-r
@@ -15,41 +26,25 @@ Unix-like filesystem manipulation utilities for Clojure, wrapping Apache Commons
     rm-rf
     touch
     mkdir-p
-    chmod
-
-## As A Dependency
-
-leiningen
-
-    [clj-file-utils "0.1.1"]
-
-maven
-
-    <dependency>
-      <groupId>clj-file-utils</groupId>
-      <artifactId>clj-file-utils</artifactId>
-      <version>0.1.1</version>
-    </dependency>
 
 ## Usage
 
-    user=> (use 'clj-file-utils.core)  
+    user=> (use 'clj-file-utils.core)
     nil
-    user=> (exist "foo.txt")
+    user=> (exists? "foo.txt")
     false
     user=> (touch "foo.txt")
     nil
-    user=> (exist "foo.txt")
+    user=> (exists? "foo.txt")
     true
     user=> (rm "foo.txt")
     nil
-    user=> (file "foo.txt")
-    #<File foo.txt>
-    user=> (.getParent (file "/path/to/foo.txt"))                         
+    user=> (.getParent (file "/path/to/foo.txt"))
     "/path/to"
-    
+
 ## Authors
 
 Extracted from http://github.com/mmcgrana/clj-garden
 by Mark McGranaghan <mmcgrana@gmail.com>
 Updates by Nate Murray <nate@natemurray.com>
+           Min Huang <min.huang@alumni.usc.edu>
