@@ -29,7 +29,7 @@
 (defn ls
   "List files in a directory."
   [dir]
-  (.listFiles dir))
+  (seq (.listFiles dir)))
 
 (defn touch
   "Create a file or update the last modified time."
@@ -96,7 +96,14 @@
         to-dir (io/file to)]
     (do
       (mkdir-p to-dir)
-
+      (doseq [path (ls from-dir)]
+        (let [mod-time (.lastModified path)
+              copied-path (io/file to-dir (.getName path))]
+          (cond
+            (file? path) (cp path copied-path :preserve preserve)
+            (directory? path) (do
+                                (cp-r path copied-path :preserve preserve)
+                                (.setLastModified copied-path mod-time))))))))
 
 (defn mv
   "Try to rename a file, or copy and delete if on another filesystem."
