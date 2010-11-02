@@ -80,7 +80,7 @@
     (if (not (.renameTo from-file to-file))
       (do
         (cp from-file to-file)
-        (rm from-file))))
+        (rm from-file)))))
 
 (defn touch
   "Create a file or update the last modified time."
