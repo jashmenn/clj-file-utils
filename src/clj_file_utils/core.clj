@@ -55,10 +55,11 @@
 (defn cp
   "Copy a file, preserving last modified time by default."
   [from to & {:keys [preserve] :or {preserve true}}]
-  (do
-    (streams/copy from to)
-    (if (and (file? from) (file? to) preserve)
-      (.setLastModified to (.lastModified from)))))
+  (let [from-file (io/file from)
+        to-file (io/file to)]
+    (do
+      (streams/copy from-file to-file)
+      (.setLastModified to-file (.lastModified from-file)))))
 
 ;(defn cp-r
 ;  "Copy a directory, preserving last modified times by default."
