@@ -26,6 +26,11 @@
   [path]
   (.exists path))
 
+(defn ls
+  "List files in a directory."
+  [dir]
+  (.listFiles dir))
+
 (defn touch
   "Create a file or update the last modified time."
   [path]
@@ -84,11 +89,14 @@
       (streams/copy from-file to-file)
       (.setLastModified to-file (.lastModified from-file)))))
 
-;(defn cp-r
-;  "Copy a directory, preserving last modified times by default."
-;  [from to & {:keys [preserve] :or {preserve true}}]
-;  (do
-;    (
+(defn cp-r
+  "Copy a directory, preserving last modified times by default."
+  [from to & {:keys [preserve] :or {preserve true}}]
+  (let [from-dir (io/file from)
+        to-dir (io/file to)]
+    (do
+      (mkdir-p to-dir)
+
 
 (defn mv
   "Try to rename a file, or copy and delete if on another filesystem."
