@@ -6,6 +6,15 @@
 
 (def test-file (io/file "test" "clj_file_utils" "core_test.txt"))
 
+(deftest test-core
+  (is (directory? "src"))
+  (is (directory? (io/file "src")))
+  (is (not (directory? nil)))
+  (is (file? test-file))
+  (is (file? (canonical-path test-file)))
+  (is (exists? test-file))
+  (is (not (exists? nil))))
+
 (deftest test-size
   (is (= 11 (size test-file)))
   (is (= 11 (size (canonical-path test-file)))))
