@@ -36,8 +36,8 @@
   [path]
   (let [file (io/file path)]
     (do
-      (.createNewFile path)
-      (.setLastModified path (System/currentTimeMillis)))))
+      (.createNewFile file)
+      (.setLastModified file (System/currentTimeMillis)))))
 
 (defn mkdir
   "Create a directory."
