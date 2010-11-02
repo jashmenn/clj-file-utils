@@ -124,7 +124,15 @@
         (rm from-file)))))
 
 (defn chmod
-  "Changes file permissions (UNIX only); for portability, consider using:
-    http://java.sun.com/developer/technicalArticles/J2SE/Desktop/javase6/enhancements/"
+  "Changes file permissions (UNIX only); for portability, consider pchmod."
   [args path]
   (sh "chmod" args (.getAbsolutePath (io/file path))))
+
+(defn pchmod
+  "Change file permissions in a portable way."
+  [path & {:keys [r w x]}]
+  (let [file (io/file path)]
+    (do
+      (if-not (nil? r) (.setReadable file r))
+      (if-not (nil? w) (.setWritable file w))
+      (if-not (nil? x) (.setExecutable file x)))))
