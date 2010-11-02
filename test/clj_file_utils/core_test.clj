@@ -58,4 +58,11 @@
       (is (exists? to-dir))
       (is (directory? to-dir)))))
 
+(deftest test-touch
+  (let [file (io/file tmp-dir "test-touch")]
+    (do
+      (is (not (exists? file)))
+      (touch file)
+      (is (exists? file)))))
+
 (use-fixtures :each tmp-dir-fixture)

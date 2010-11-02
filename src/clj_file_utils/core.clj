@@ -86,7 +86,8 @@
   "Create a file or update the last modified time."
   [path]
   (let [file (io/file path)]
-    (if-not (.createNewFile path)
+    (do
+      (.createNewFile path)
       (.setLastModified path (System/currentTimeMillis)))))
 
 (defn mkdir
