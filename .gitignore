@@ -1,4 +1,3 @@
-.autosession.vim
-classes/
-lib/
-.DS_Store
+/classes
+/lib
+/target
