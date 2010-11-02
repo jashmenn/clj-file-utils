@@ -16,7 +16,7 @@
   [path]
   (.isFile path))
 
-(efun directory?
+(defun directory?
   "Returns true if the path is a directory; false otherwise."
   [path]
   (.isDirectory path))
