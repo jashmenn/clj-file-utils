@@ -87,7 +87,8 @@
         to-file (io/file to)]
     (do
       (streams/copy from-file to-file)
-      (.setLastModified to-file (.lastModified from-file)))))
+      (if preserve
+        (.setLastModified to-file (.lastModified from-file))))))
 
 (defn cp-r
   "Copy a directory, preserving last modified times by default."
@@ -103,7 +104,8 @@
             (file? path) (cp path copied-path :preserve preserve)
             (directory? path) (do
                                 (cp-r path copied-path :preserve preserve)
-                                (.setLastModified copied-path mod-time))))))))
+                                (if preserve
+                                  (.setLastModified copied-path mod-time)))))))))
 
 (defn mv
   "Try to rename a file, or copy and delete if on another filesystem."
