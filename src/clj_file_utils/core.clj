@@ -4,54 +4,55 @@
   (:import [java.io File])
   (:gen-class))
 
-(defmacro defn-file [m docstring args & body]
+(defmacro defun [name docstring args & body]
   `(do
-     (defmulti ~m ~docstring class)
-     (defmethod ~m File ~args ~@body)
-     (defmethod ~m String ~args (~m (io/file ~@args)))))
+     (defmulti ~name ~docstring class)
+     (defmethod ~name File ~args ~@body)
+     (defmethod ~name String ~args (~name (io/file ~@args)))
+     (defmethod ~name :default ~args false)))
 
-(defn-file file?
+(defun file?
   "Returns true if the path is a file; false otherwise."
   [path]
   (.isFile path))
 
-(defn-file directory?
+(efun directory?
   "Returns true if the path is a directory; false otherwise."
   [path]
   (.isDirectory path))
 
-(defn-file exists?
+(defun exists?
   "Returns true if path exists; false otherwise."
   [path]
   (.exists path))
 
-(defn-file size
+(defn size
   "Returns the size in bytes of a file."
   [file]
-  (.length file))
+  (.length (io/file file)))
 
-(defn-file rm
+(defn rm
   "Remove a file. Will throw an exception if the file cannot be deleted"
   [file]
   (io/delete-file file))
 
-(defn-file rm-f
+(defn rm-f
   "Remove a file, ignoring any errors."
   [file]
   (io/delete-file file true))
 
-(defn-file rm-r
+(defn rm-r
   "Remove a directory. The directory must be empty; will throw an exception
     if it is not or if the file cannot be deleted."
-  [file]
-  (io/delete-file-recursively file))
+  [path]
+  (io/delete-file-recursively path))
 
-(defn-file rm-rf
+(defn rm-rf
   "Remove a directory, ignoring any errors."
-  [file]
-  (io/delete-file-recursively file true))
+  [path]
+  (io/delete-file-recursively path true))
 
-(defn-file cp
+(defn cp
   "Copy a file, preserving last modified time by default."
   [from to & {:keys [preserve] :or {preserve true}}]
   (do
@@ -59,13 +60,13 @@
     (if (and (file? from) (file? to) preserve)
       (.setLastModified to (.lastModified from)))))
 
-;(defn-file cp-r
+;(defn cp-r
 ;  "Copy a directory, preserving last modified times by default."
 ;  [from to & {:keys [preserve] :or {preserve true}}]
 ;  (do
 ;    (println "Hello!")))
 
-(defn-file mv
+(defn mv
   "Try to rename a file, or copy and delete if on another filesystem."
   [from to]
   (if (not (.renameTo from to))
@@ -73,18 +74,18 @@
       (cp from to)
       (rm from))))
 
-(defn-file touch
+(defn touch
   "Create a file or update the last modified time."
   [file]
   (if-not (.createNewFile file)
     (.setLastModified file (System/currentTimeMillis))))
 
-(defn-file mkdir
+(defn mkdir
   "Create a directory."
   [dir]
   (.mkdir dir))
 
-(defn-file mkdir-p
+(defn mkdir-p
   "Create a directory and all parent directories if they do not exist."
   [dir]
   (.mkdirs dir))
