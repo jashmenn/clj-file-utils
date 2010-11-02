@@ -70,26 +70,29 @@
 (defn mv
   "Try to rename a file, or copy and delete if on another filesystem."
   [from to]
-  (if (not (.renameTo from to))
-    (do
-      (cp from to)
-      (rm from))))
+  (let [from-file (io/file from)
+        to-file (io/file to)]
+    (if (not (.renameTo from-file to-file))
+      (do
+        (cp from-file to-file)
+        (rm from-file))))
 
 (defn touch
   "Create a file or update the last modified time."
-  [file]
-  (if-not (.createNewFile file)
-    (.setLastModified file (System/currentTimeMillis))))
+  [path]
+  (let [file (io/file path)]
+    (if-not (.createNewFile path)
+      (.setLastModified path (System/currentTimeMillis)))))
 
 (defn mkdir
   "Create a directory."
   [dir]
-  (.mkdir dir))
+  (.mkdir (io/file dir)))
 
 (defn mkdir-p
   "Create a directory and all parent directories if they do not exist."
   [dir]
-  (.mkdirs dir))
+  (.mkdirs (io/file dir)))
 
 ;(defn chmod
 ;  [path]
