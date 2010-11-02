@@ -28,12 +28,34 @@
   (is (= 11 (size (canonical-path test-file)))))
 
 (deftest test-cp
-  (let [to-file (io/file tmp-dir "test-mv")]
+  (let [to-file (io/file tmp-dir "test-cp")]
     (do
       (cp test-file to-file)
       (is (exists? to-file))
       (is (file? to-file))
       (is (= (.lastModified test-file)
              (.lastModified to-file))))))
+
+(deftest test-mv
+   (let [from-file (io/file tmp-dir "from-file")
+         to-file (io/file tmp-dir "to-file")]
+    (do
+      (cp test-file from-file)
+      (is (exists? from-file))
+      (mv from-file to-file)
+      (is (not (exists? from-file)))
+      (is (exists? to-file))
+      (is (= (.lastModified test-file)
+             (.lastModified to-file))))))
+
+(deftest test-mv-dir
+  (let [from-dir (io/file tmp-dir "from-dir")
+        to-dir (io/file tmp-dir "to-dir")]
+    (do
+      (mkdir from-dir)
+      (mv from-dir to-dir)
+      (is (not (exists? from-dir)))
+      (is (exists? to-dir))
+      (is (directory? to-dir)))))
 
 (use-fixtures :each tmp-dir-fixture)
