@@ -5,6 +5,15 @@
   (:import [java.io File])
   (:gen-class))
 
+; The following function is retained for backwards compatibility purposes.
+(def file io/file)
+
+; The following function is retained for backwards compatibility purposes.
+(def pwd io/pwd)
+
+; The following function is retained for backwards compatibility purposes.
+(def cwd io/pwd)
+
 (defmacro defun [name docstring args & body]
   `(do
      (defmulti ~name ~docstring class)
