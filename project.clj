@@ -1,4 +1,4 @@
-(defproject clj-file-utils "0.1.2"
+(defproject clj-file-utils "0.1.4"
     :dependencies [[commons-io/commons-io "1.4"]]
     :dev-dependencies [
                       [org.clojure/clojure "1.2.0-beta1"]
