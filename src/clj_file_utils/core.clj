@@ -48,13 +48,23 @@
   [from-file to-file]
   (FileUtils/moveFile from-file to-file))
 
+(defn-file-2 mv-dir
+  "Moves a directory"
+  [from-dir to-dir]
+  (FileUtils/moveDirectory from-dir to-dir))
+
+(defn-file-2 mv-dir-to-dir
+  "Moves a directory to another directory"
+  [from-dir to-dir]
+  (FileUtils/moveDirectoryToDirectory from-dir to-dir true))
+
 (defn-file-2 cp
   "Copy a file from one location to another, preserving the file date."
   [from-file to-file]
   (FileUtils/copyFile from-file to-file))
 
 (defn-file-2 cp-r
-  "Copy a directory from one location to another, preseing the file data."
+  "Copy a directory from one location to another, preserving the file data."
   [from-dir to-dir]
   (FileUtils/copyDirectory from-dir to-dir))
 
@@ -101,9 +111,8 @@
   [#^File file #^String mode]
   (sh "chmod" mode (.getAbsolutePath file)))
 
-;;(defn ls [dir]
-;;  (seq (. (new java.io.File dir) (listFiles))))
-
+(defn ls [dir]
+  (seq (. (java.io.File. dir) (listFiles))))
 
 (defn cwd [] (System/getProperty "user.dir"))
 
