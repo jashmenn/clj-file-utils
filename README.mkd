@@ -1,26 +1,26 @@
 # clj-file-utils
 
-Unix-like filesystem manipulation utilities for Clojure, without a dependency
-on Apache Commons IO.
+Unix-like filesystem manipulation utilities for Clojure, wrapping Apache
+Commons IO.
 
-Does not include the `file` function that is available from clojure.contrib.io.
-
-Includes a `pchmod` function which changes file permissions in a portable way.
+Includes a `pchmod` function which changes file permissions in a portable
+way.
 
 ## Implemented Functions
 
-    exists?
-    directory?
-    file?
-    size
-    ls
-    mv
     cp
     cp-r
+    directory?
+    exists?
+    file
+    file?
+    ls
+    mv
     rm
     rm-f
     rm-r
     rm-rf
+    size
     touch
     mkdir-p
     chmod
@@ -42,6 +42,6 @@ Includes a `pchmod` function which changes file permissions in a portable way.
 
 ## Authors
 
-Extracted from http://github.com/mmcgrana/clj-garden by Mark McGranaghan <mmcgrana@gmail.com>
+Extracted from <http://github.com/mmcgrana/clj-garden> by Mark McGranaghan <mmcgrana@gmail.com>
 
 Updates by Nate Murray <nate@natemurray.com>, Min Huang <min.huang@alumni.usc.edu>
