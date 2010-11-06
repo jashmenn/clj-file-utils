@@ -145,3 +145,8 @@
       (if-not (nil? r) (.setReadable file r))
       (if-not (nil? w) (.setWritable file w))
       (if-not (nil? x) (.setExecutable file x)))))
+
+(defn ls [dir]
+  (seq (. (java.io.File. dir) (listFiles))))
+
+(defn cwd [] (System/getProperty "user.dir"))
