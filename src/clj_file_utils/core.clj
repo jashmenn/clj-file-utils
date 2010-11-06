@@ -95,42 +95,31 @@
   [from to & {:keys [preserve] :or {preserve true}}]
   (let [from-file (io/file from)
         to-file (io/file to)]
-    (do
-      (streams/copy from-file to-file)
-      (if preserve
-        (.setLastModified to-file (.lastModified from-file))))))
+    (FileUtils/copyFile from-file to-file preserve)))
 
 (defn cp-r
   "Copy a directory, preserving last modified times by default."
   [from to & {:keys [preserve] :or {preserve true}}]
-  (let [from-dir (io/file from)
-        to-dir (io/file to)
-        cp-directory (fn [a b t preserve]
-                       (do
-                         (cp-r a b :preserve preserve)
-                         (if preserve
-                           (.setLastModified b t))))]
-    (do
-      (mkdir-p to-dir)
-      (doseq [path (ls from-dir)]
-        (let [mod-time (.lastModified path)
-              copied-path (io/file to-dir (.getName path))]
-          (cond
-            (file? path) (cp path copied-path :preserve preserve)
-            (directory? path) (cp-directory path
-                                            copied-path
-                                            mod-time
-                                            preserve)))))))
+  (let [from-file (io/file from)
+        to-file (io/file to)]
+    (cond
+      (when (and (file? from-file) (file? to-file))
+        (FileUtils/copyFile from-file to-file preserve))
+      (when (and (file? from-file) (directory? to-file))
+        (FileUtils/copyFileToDirectory from-file to-file preserve))
+      :default
+        (FileUtils/copyDirectory from-file to-file preserve))))
 
 (defn mv
   "Try to rename a file, or copy and delete if on another filesystem."
   [from to]
   (let [from-file (io/file from)
         to-file (io/file to)]
-    (if (not (.renameTo from-file to-file))
-      (do
-        (cp from-file to-file)
-        (rm from-file)))))
+    (cond
+      (when (and (file? from-file) (file? to-file))
+        (FileUtils/moveFile from-file to-file))
+      :default
+        (FileUtils/moveToDirectory from-file to-file))))
 
 (defn chmod
   "Changes file permissions (UNIX only); for portability, consider pchmod."
