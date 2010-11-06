@@ -3,6 +3,7 @@
   (:require [clojure.contrib.io :as io])
   (:use [clojure.contrib.shell-out :only (sh)])
   (:import [java.io File])
+  (:import [org.apache.commons.io FileUtils])
   (:gen-class))
 
 ; The following function is retained for backwards compatibility purposes.
@@ -103,10 +104,10 @@
   (let [from-file (io/file from)
         to-file (io/file to)]
     (cond
-      (when (and (file? from-file) (file? to-file))
-        (FileUtils/copyFile from-file to-file preserve))
-      (when (and (file? from-file) (directory? to-file))
-        (FileUtils/copyFileToDirectory from-file to-file preserve))
+      (and (file? from-file) (file? to-file))
+        (FileUtils/copyFile from-file to-file preserve)
+      (and (file? from-file) (directory? to-file))
+        (FileUtils/copyFileToDirectory from-file to-file preserve)
       :default
         (FileUtils/copyDirectory from-file to-file preserve))))
 
@@ -116,10 +117,10 @@
   (let [from-file (io/file from)
         to-file (io/file to)]
     (cond
-      (when (and (file? from-file) (file? to-file))
-        (FileUtils/moveFile from-file to-file))
+      (and (file? from-file) (file? to-file))
+        (FileUtils/moveFile from-file to-file)
       :default
-        (FileUtils/moveToDirectory from-file to-file))))
+        (FileUtils/moveToDirectory from-file to-file true))))
 
 (defn chmod
   "Changes file permissions (UNIX only); for portability, consider pchmod."
