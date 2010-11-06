@@ -37,8 +37,8 @@
              (.lastModified to-file))))))
 
 (deftest test-mv
-   (let [from-file (io/file tmp-dir "from-file")
-         to-file (io/file tmp-dir "to-file")]
+  (let [from-file (io/file tmp-dir "from-file")
+        to-file (io/file tmp-dir "to-file")]
     (do
       (cp test-file from-file)
       (is (exists? from-file))
