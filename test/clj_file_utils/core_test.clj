@@ -44,7 +44,8 @@
       (is (exists? from-file))
       (mv from-file to-file)
       (is (not (exists? from-file)))
-      (is (exists? to-file)))))
+      (is (exists? to-file))
+      (is (file? to-file)))))
 
 (deftest test-mv-dir
   (let [from-dir (io/file tmp-dir "from-dir")

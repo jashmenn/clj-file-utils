@@ -117,7 +117,8 @@
   (let [from-file (io/file from)
         to-file (io/file to)]
     (cond
-      (and (file? from-file) (file? to-file))
+      (and (file? from-file)
+           (or (file? to-file) (not (exists? to-file))))
         (FileUtils/moveFile from-file to-file)
       :default
         (FileUtils/moveToDirectory from-file to-file true))))
