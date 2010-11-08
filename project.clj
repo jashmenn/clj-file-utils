@@ -1,4 +1,4 @@
-(defproject clj-file-utils "0.2.0"
+(defproject clj-file-utils "0.2.1"
   :dependencies
     [[commons-io/commons-io "2.0"]]
   :dev-dependencies
