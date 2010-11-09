@@ -36,7 +36,7 @@
       (is (= (.lastModified test-file)
              (.lastModified to-file))))))
 
-(deftest test-mv
+(deftest test-mv-file-to-file
   (let [from-file (io/file tmp-dir "from-file")
         to-file (io/file tmp-dir "to-file")]
     (do
@@ -47,7 +47,18 @@
       (is (exists? to-file))
       (is (file? to-file)))))
 
-(deftest test-mv-dir
+(deftest test-mv-file-to-dir
+  (let [from-file (io/file tmp-dir "from-file")
+        to-dir (io/file tmp-dir "to-dir")]
+    (do
+      (cp test-file from-file)
+      (is (exists? from-file))
+      (mkdir to-dir)
+      (mv from-file to-dir)
+      (is (not (exists? from-file)))
+      (is (file? (file to-dir (.getName from-file)))))))
+
+(deftest test-mv-dir-to-dir
   (let [from-dir (io/file tmp-dir "from-dir")
         to-dir (io/file tmp-dir "to-dir")]
     (do
