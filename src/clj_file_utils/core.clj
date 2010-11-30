@@ -6,6 +6,8 @@
   (:import [org.apache.commons.io FileUtils])
   (:gen-class))
 
+;(set! *warn-on-reflection* true)
+
 ; The following function is retained for backwards compatibility purposes.
 (def file io/file)
 
@@ -25,17 +27,17 @@
 (defun file?
   "Returns true if the path is a file; false otherwise."
   [path]
-  (.isFile path))
+  (.isFile ^File path))
 
 (defun directory?
   "Returns true if the path is a directory; false otherwise."
   [path]
-  (.isDirectory path))
+  (.isDirectory ^File path))
 
 (defun exists?
   "Returns true if path exists; false otherwise."
   [path]
-  (.exists path))
+  (.exists ^File path))
 
 (defn ls
   "List files in a directory."
@@ -109,7 +111,7 @@
       (and (file? from-file) (directory? to-file))
         (FileUtils/copyFileToDirectory from-file to-file preserve)
       :default
-        (FileUtils/copyDirectory from-file to-file preserve))))
+        (FileUtils/copyDirectory from-file to-file (boolean preserve)))))
 
 (defn mv
   "Try to rename a file, or copy and delete if on another filesystem."
