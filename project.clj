@@ -1,4 +1,4 @@
-(defproject clj-file-utils "0.2.2"
+(defproject clj-file-utils "0.2.3-SNAPSHOT"
   :warn-on-reflection true
   :dependencies
     [[commons-io/commons-io "2.0"]]
