@@ -6,8 +6,6 @@
   (:import [org.apache.commons.io FileUtils])
   (:gen-class))
 
-;(set! *warn-on-reflection* true)
-
 ; The following function is retained for backwards compatibility purposes.
 (def file io/file)
 

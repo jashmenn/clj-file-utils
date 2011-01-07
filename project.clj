@@ -1,4 +1,5 @@
 (defproject clj-file-utils "0.2.2"
+  :warn-on-reflection true
   :dependencies
     [[commons-io/commons-io "2.0"]]
   :dev-dependencies
