@@ -6,14 +6,20 @@
   (:import [org.apache.commons.io FileUtils])
   (:gen-class))
 
-; The following function is retained for backwards compatibility purposes.
-(def file io/file)
+(def
+  ^{:doc "DEPRECATED.  Prefer io/file."
+    :deprecated "0.2.1"}
+  file io/file)
 
-; The following function is retained for backwards compatibility purposes.
-(def pwd io/pwd)
+(def
+  ^{:doc "DEPRECATED.  Prefer io/pwd"
+    :deprecated "0.2.1"}
+  pwd io/pwd)
 
-; The following function is retained for backwards compatibility purposes.
-(def cwd io/pwd)
+(def
+  ^{:doc "DEPRECATED.  Prefer io/pwd"
+    :deprecated "0.2.1"}
+  cwd io/pwd)
 
 (defmacro defun [name docstring args & body]
   `(do
