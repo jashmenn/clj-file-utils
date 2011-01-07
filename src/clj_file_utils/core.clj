@@ -132,14 +132,14 @@
 (defn mv-dir
   "DEPRECATED.  Prefer mv.
    Moves a directory"
-  {:deprecated "0.2.0"}
+  ^{:deprecated "0.2.0"}
   [from to]
   (mv from to))
 
 (defn mv-dir-to-dir
   "DEPRECATED.  Prefer mv.
    Moves a directory to another directory."
-  {:deprecated "0.2.0"}
+  ^{:deprecated "0.2.0"}
   [from to]
   (mv from to))
 
