@@ -5,6 +5,7 @@
   :dev-dependencies
     [[org.clojure/clojure "1.2.0"]
      [org.clojure/clojure-contrib "1.2.0"]
+     [autodoc "0.7.1"]
      [swank-clojure "1.2.1"]]
   :namespaces [clj-file-utils.core]
   :repositories
