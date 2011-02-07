@@ -1,0 +1,334 @@
+<html>
+  <head>
+    <title>clj-file-utils.core API reference (clj-file-utils)</title>
+    <link href="static/favicon.png" rel="icon" />
+    <link href="static/favicon.png" rel="shortcut icon" />
+    <link media="all" type="text/css" href="static/clojure.css" rel="stylesheet" />
+    <link media="all" type="text/css" href="static/wiki.css" rel="stylesheet" />
+    <link media="all" type="text/css" href="static/internal.css" rel="stylesheet" />
+    <!-- TODO: are we using these (from clojure.org)? If so, add the files -->
+    <script src="file/view/code_highlighter.js" type="text/javascript"></script>
+    <script src="file/view/clojure.js" type="text/javascript"></script>
+    <style>.menuWrapper{height: 36px;}</style>
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" href="http://www.wikispaces.com/_/2009051601/s/internal_ie.css" type="text/css" />
+    <![endif]-->
+  </head>
+<!--
+This document was auto-generated from the source by the clojure autodoc system.
+To report errors or ask questions about the overall documentation structure, formatting,
+etc., contact Tom Faulhaber (google mail name: tomfaulhaber).
+For errors in the documentation of a particular namespace, contact the author of that
+namespace.
+-->
+  <body>
+    <div id="AllContentContainer">
+      <div id="Header">
+	<a id="Logo" href="index.html"><img alt="Clojure" height="100" width="100" src="static/clojure-icon.gif" /></a>
+	<h1><a title="page header title" id="page-header" href="index.html">clj-file-utils</a></h1>
+      </div>
+      <div id="leftcolumn"><div style="text-align: center;"></div>
+<div class="menu">
+  <div class="WikiCustomNav WikiElement wiki">
+    <a class="wiki_link" href="index.html">Overview</a><br />
+    <a class="wiki_link" href="api-index.html">API Index</a><br />
+    <a class="wiki_link" href="#">Namespaces:</a>
+    <ul id="left-sidebar-list">
+      <li><a href="clj-file-utils.core-api.html" class="wiki_link">clj-file-utils.core</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+      <div id="rightcolumn">
+	<div id="Content">
+	  <div class="contentBox"><div class="innerContentBox">
+              <div id="content_view" class="wiki wikiPage">
+                <div id="right-sidebar"><div id="toc">
+  <h1 class="nopad">Table of Contents</h1>
+  <div style="margin-left: 1em;" class="toc-section">
+    <a href="#toc0">Overview</a>
+    <div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/canonical-path">canonical-path</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/chmod">chmod</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/cp">cp</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/cp-r">cp-r</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/cwd">cwd</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/directory?">directory?</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/exists?">exists?</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/file">file</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/file?">file?</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/ls">ls</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/mkdir">mkdir</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/mkdir-p">mkdir-p</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/mv">mv</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/mv-dir">mv-dir</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/mv-dir-to-dir">mv-dir-to-dir</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/pchmod">pchmod</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/pwd">pwd</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/rm">rm</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/rm-f">rm-f</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/rm-r">rm-r</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/rm-rf">rm-rf</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/size">size</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#clj-file-utils.core/touch">touch</a>
+    </div>
+    <br />
+  </div>
+</div>
+</div>
+                <div id="content-tag"><h1 id="overview">API for <span id="namespace-name">clj-file-utils.core</span></h1>
+by <span id="author">Unknown</span><br />
+<br />Usage:
+<pre>
+(ns your-namespace
+  (:require <span id="long-name">clj-file-utils.core</span>))
+</pre><pre>
+</pre><h2>Overview</h2>
+<pre id="namespace-docstr"></pre>
+<br />
+<h2>Public Variables and Functions</h2>
+<div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/canonical-path">canonical-path</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (canonical-path path)
+</pre>
+  <pre id="var-docstr">Returns the canonical path of the file or directory.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/chmod">chmod</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (chmod args path)
+</pre>
+  <pre id="var-docstr">Changes file permissions (UNIX only); for portability, consider pchmod.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/cp">cp</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (cp from to &amp; {:keys [preserve], :or {preserve true}})
+</pre>
+  <pre id="var-docstr">Copy a file, preserving last modified time by default.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/cp-r">cp-r</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (cp-r from to &amp; {:keys [preserve], :or {preserve true}})
+</pre>
+  <pre id="var-docstr">Copy a directory, preserving last modified times by default.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/cwd">cwd</h2>
+  <span id="var-type">var</span><br />
+  <pre id="var-usage"></pre>
+  <pre id="var-docstr">DEPRECATED.  Prefer io/pwd</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/directory?">directory?</h2>
+  <span id="var-type">multimethod</span><br />
+  <pre id="var-usage">No usage documentation available</pre>
+  <pre id="var-docstr">Returns true if the path is a directory; false otherwise.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/exists?">exists?</h2>
+  <span id="var-type">multimethod</span><br />
+  <pre id="var-usage">No usage documentation available</pre>
+  <pre id="var-docstr">Returns true if path exists; false otherwise.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/file">file</h2>
+  <span id="var-type">var</span><br />
+  <pre id="var-usage"></pre>
+  <pre id="var-docstr">DEPRECATED.  Prefer io/file.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/file?">file?</h2>
+  <span id="var-type">multimethod</span><br />
+  <pre id="var-usage">No usage documentation available</pre>
+  <pre id="var-docstr">Returns true if the path is a file; false otherwise.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/ls">ls</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (ls dir)
+</pre>
+  <pre id="var-docstr">List files in a directory.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/mkdir">mkdir</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (mkdir dir)
+</pre>
+  <pre id="var-docstr">Create a directory.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/mkdir-p">mkdir-p</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (mkdir-p dir)
+</pre>
+  <pre id="var-docstr">Create a directory and all parent directories if they do not exist.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/mv">mv</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (mv from to)
+</pre>
+  <pre id="var-docstr">Try to rename a file, or copy and delete if on another filesystem.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/mv-dir">mv-dir</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (mv-dir from to)
+</pre>
+  <pre id="var-docstr">DEPRECATED.  Prefer mv.
+Moves a directory</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/mv-dir-to-dir">mv-dir-to-dir</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (mv-dir-to-dir from to)
+</pre>
+  <pre id="var-docstr">DEPRECATED.  Prefer mv.
+Moves a directory to another directory.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/pchmod">pchmod</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (pchmod path &amp; {:keys [r w x]})
+</pre>
+  <pre id="var-docstr">Change file permissions in a portable way.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/pwd">pwd</h2>
+  <span id="var-type">var</span><br />
+  <pre id="var-usage"></pre>
+  <pre id="var-docstr">DEPRECATED.  Prefer io/pwd</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/rm">rm</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (rm file)
+</pre>
+  <pre id="var-docstr">Remove a file. Will throw an exception if the file cannot be deleted.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/rm-f">rm-f</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (rm-f file)
+</pre>
+  <pre id="var-docstr">Remove a file, ignoring any errors.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/rm-r">rm-r</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (rm-r path)
+</pre>
+  <pre id="var-docstr">Remove a directory. The directory must be empty; will throw an exception
+if it is not or if the file cannot be deleted.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/rm-rf">rm-rf</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (rm-rf path)
+</pre>
+  <pre id="var-docstr">Remove a directory, ignoring any errors.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/size">size</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (size file)
+</pre>
+  <pre id="var-docstr">Returns the size in bytes of a file.</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="clj-file-utils.core/touch">touch</h2>
+  <span id="var-type">function</span><br />
+  <pre id="var-usage">Usage: (touch path)
+</pre>
+  <pre id="var-docstr">Create a file or update the last modified time.</pre>
+  
+</div>
+
+
+</div>
+              </div>
+            </div>
+          </div>
+	</div>
+	<div id="foot">
+	  <div style="text-align: center;" id="copyright">No copyright info </div>
+	</div>
+      </div>
+      <div id="DesignedBy">Logo &amp; site design by <a title="Visit Tom Hickey's website." href="http://www.tomhickey.com">Tom Hickey</a>.<br />
+      Clojure auto-documentation system by Tom Faulhaber.</div>
+    </div>
+    <!-- /AllContentContainer -->
+  </body>
+
+</html>
